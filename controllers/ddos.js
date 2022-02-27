@@ -6,7 +6,7 @@ const dos = (url, qty, ms) => {
   setInterval((_) => {
     for (let i = qty; i--; ) req(url, (error) => (!error ? ok++ : err++));
 
-    console.log(`result:' ${ok} ${err}`);
+    console.log(`result:'${url} ${ok} ${err}`);
 
     err = ok = 0;
   }, ms);
